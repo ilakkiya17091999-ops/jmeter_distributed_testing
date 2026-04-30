@@ -15,7 +15,7 @@ services:
       - jmeter-slave-2
       - jmeter-slave-3
     entrypoint: ["sh", "-c"]
-    command: "tail -f /dev/null"
+    command: "while true; do sleep 30; done"
 
   jmeter-slave-1:
     image: justb4/jmeter
