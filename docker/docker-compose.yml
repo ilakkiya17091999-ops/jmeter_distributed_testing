@@ -7,6 +7,7 @@ services:
     environment:
       - JVM_XMS=512
       - JVM_XMX=1024
+      - JMETER_REMOTE_HOSTS=jmeter-slave-1,jmeter-slave-2,jmeter-slave-3
     volumes:
       - ../tests:/tests
     depends_on:
