@@ -46,7 +46,7 @@
           </elementProp>
           <elementProp name="SLA" elementType="Argument">
             <stringProp name="Argument.name">SLA</stringProp>
-            <stringProp name="Argument.value">30000</stringProp>
+            <stringProp name="Argument.value">${__P{SLA,1000)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="Thread" elementType="Argument">
