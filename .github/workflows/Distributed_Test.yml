@@ -37,7 +37,7 @@ jobs:
 
       - name: run load test
         run: | 
-          docker exec jmeter-master jmeter -n -t /tests/Petstore.jmx -R jmeter-slave-1,jmeter-slave-2,jmeter-slave-3 -l results.jtl -e -o report -JThread=5 -JRampup=2 -JDuration=300 -JSLA=15000
+          docker exec jmeter-master jmeter -Dserver.rmi.ssl.disable=true -n -t /tests/Petstore.jmx -R jmeter-slave-1,jmeter-slave-2,jmeter-slave-3 -l results.jtl -e -o report -JThread=5 -JRampup=2 -JDuration=300 -JSLA=15000
 
       - name: upload report
         uses: actions/upload-artifact@v4

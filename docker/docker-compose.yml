@@ -8,7 +8,6 @@ services:
     environment:
       - JVM_XMS=512
       - JVM_XMX=1024
-      - JMETER_SSL_DISABLE=true
     volumes:
       - ../tests:/tests
     depends_on:
@@ -23,9 +22,8 @@ services:
     container_name: jmeter-slave-1
     environment:
       - JVM_XMS=512
-      - JVM_XMX=1024
-      - JMETER_SSL_DISABLE=true
-    command: jmeter-server
+      - JVM_XMX=1024 
+    command: jmeter-server -Dserver.rmi.ssl.disable=true
 
   jmeter-slave-2:
     image: justb4/jmeter
@@ -33,8 +31,7 @@ services:
     environment:
       - JVM_XMS=512
       - JVM_XMX=1024
-      - JMETER_SSL_DISABLE=true
-    command: jmeter-server
+    command: jmeter-server -Dserver.rmi.ssl.disable=true
 
   jmeter-slave-3:
     image: justb4/jmeter
@@ -42,6 +39,5 @@ services:
     environment:
       - JVM_XMS=512
       - JVM_XMX=1024
-      - JMETER_SSL_DISABLE=true
-    command: jmeter-server
+    command: jmeter-server -Dserver.rmi.ssl.disable=true
 
