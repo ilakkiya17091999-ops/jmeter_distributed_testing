@@ -28,6 +28,10 @@ jobs:
       - name: check jmeter-master is up and running
         run: docker logs jmeter-master
 
+      - name: Verify repo files
+        run: |
+          ls -R
+
       - name: Check inside container
         run: docker exec jmeter-master ls -l /tests
 
