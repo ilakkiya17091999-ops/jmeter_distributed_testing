@@ -14,20 +14,28 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Spin up Machine
-        run: docker compose -f docker/docker-compose.yml up -d
+        run: | 
+          docker compose -f docker/docker-compose.yml up -d
+          docker ps -a
+
+      - name: Check Container Logs
+        run: docker compose -f docker/docker-compose.yml logs
       
       - name: Wait
-        run: sleep 120
+        run: sleep 10
 
       - name: check docker is up and running
         run: docker compose -f docker/docker-compose.yml ps
 
       - name: run load test
         run: | 
-          docker exec jmeter-master export JVM_ARGS="-Xms1g -Xmx2g" jmeter -n -t /tests/Petstore.jmx -R jmeter-slave-1,jmeter-slave-2,jmeter-slave-3 -l /tests/results.jtl -e -o /tests/report -JThread=5 -JRampup=2 -JDuration=300 -JSLA=15000
+          docker exec jmeter-master bash -c 'export JVM_ARGS="-Xms1g -Xmx2g" jmeter -n -t /tests/Petstore.jmx -R jmeter-slave-1,jmeter-slave-2,jmeter-slave-3 -l /tests/results.jtl -e -o /tests/report -JThread=5 -JRampup=2 -JDuration=300 -JSLA=15000'
 
       - name: upload report
         uses: actions/upload-artifact@v4
         with:
           name: jmeter report
-          path: /tests/report
+          path: tests/report
+
+      - name: Cleanup
+        run: docker compose -f docker/docker-compose.yml down
