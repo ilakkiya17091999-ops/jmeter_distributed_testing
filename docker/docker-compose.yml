@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+
+  jmeter-master:
+    image: justb4/jmeter
+    container_name: jmeter-master
+    volumes:
+      - ./tests:/tests
+    depends_on:
+      - jmeter-slave-1
+      - jmeter-slave-2
+      - jmeter-slave-3
+    command: tail -f /dev/null
+
+  jmeter-slave-1:
+    image: justb4/jmeter
+    container_name: jmeter-slave-1
+    command: jmeter-server
+
+  jmeter-slave-2:
+    image: justb4/jmeter
+    container_name: jmeter-slave-2
+    command: jmeter-server
+
+  jmeter-slave-3:
+    image: justb4/jmeter
+    container_name: jmeter-slave-3
+    command: jmeter-server
+

@@ -1,0 +1,33 @@
+name: Distributed Testing using Docker
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  Distributed-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Spin up Machine
+        run: docker compose -f docker/docker-compose.yml up -d
+      
+      - name: Wait
+        run: sleep 120
+
+      - name: check docker is up and running
+        run: docker compose ps
+
+      - name: run load test
+        run: | 
+          docker exec jmeter-master export JVM_ARGS="-Xms1g -Xmx2g" jmeter -n -t /tests/Petstore.jmx -R jmeter-slave-1,jmeter-slave-2,jmeter-slave-3 -l /tests/results.jtl -e -o /tests/report -JThread=10 -JRampup=5 -JDuration=3600 -JSLA=36000
+
+      - name: upload report
+        uses: actions/upload-artifact@v4
+        with:
+          name: jmeter report
+          path: /tests/report
