@@ -22,34 +22,31 @@ services:
     environment:
       - JVM_XMS=512
       - JVM_XMX=1024 
-      - RMI_HOSTNAME=jmeter-slave-1
+      - JVM_ARGS=-Dserver.rmi.ssl.disable=true -Dserver.rmi.port=1099
     command: >
       jmeter-server
       -Dserver.rmi.ssl.disable=true
-      -Dserver_port=1099
-      -Dserver.rmi.localport=50000
+      
      
   jmeter-slave-2:
     image: justb4/jmeter
     environment:
       - JVM_XMS=512
       - JVM_XMX=1024
-      - RMI_HOSTNAME=jmeter-slave-2
+      - JVM_ARGS=-Dserver.rmi.ssl.disable=true -Dserver.rmi.port=1099
     command: >
       jmeter-server
       -Dserver.rmi.ssl.disable=true
-      -Dserver_port=1099
-      -Dserver.rmi.localport=50000
+      
        
   jmeter-slave-3:
     image: justb4/jmeter
     environment:
       - JVM_XMS=512
       - JVM_XMX=1024
-      - RMI_HOSTNAME=jmeter-slave-3
+      - JVM_ARGS=-Dserver.rmi.ssl.disable=true -Dserver.rmi.port=1099
     command: >
       jmeter-server
       -Dserver.rmi.ssl.disable=true
-      -Dserver_port=1099
-      -Dserver.rmi.localport=50000
+      
    
