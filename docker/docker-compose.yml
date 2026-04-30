@@ -22,6 +22,7 @@ services:
     environment:
       - JVM_XMS=512
       - JVM_XMX=1024 
+      - SERVER_HOSTNAME=jmeter-slave-1
     command: jmeter-server -Dserver.rmi.ssl.disable=true
    
   jmeter-slave-2:
@@ -29,6 +30,7 @@ services:
     environment:
       - JVM_XMS=512
       - JVM_XMX=1024
+      - SERVER_HOSTNAME=jmeter-slave-2
     command: jmeter-server -Dserver.rmi.ssl.disable=true
     
   jmeter-slave-3:
@@ -36,4 +38,5 @@ services:
     environment:
       - JVM_XMS=512
       - JVM_XMX=1024
+      - SERVER_HOSTNAME=jmeter-slave-3
     command: jmeter-server -Dserver.rmi.ssl.disable=true
