@@ -9,7 +9,7 @@ services:
       - JVM_XMS=512
       - JVM_XMX=1024
     volumes:
-      - ./tests:/tests
+      - ../tests:/tests
     depends_on:
       - jmeter-slave-1
       - jmeter-slave-2
