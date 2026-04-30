@@ -45,4 +45,4 @@ services:
     networks:
       - jmeter-net
   networks:
-  jmeter-net:
+    jmeter-net:
