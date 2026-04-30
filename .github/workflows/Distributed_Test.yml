@@ -15,9 +15,13 @@ jobs:
 
       - name: Restart Cotainers
         run: | 
-          docker compose -f docker/docker-compose.yml down -v
+          docker compose -f docker/docker-compose.yml down -v --remove-orphans
+          docker network prune -f
           docker compose -f docker/docker-compose.yml up -d --force-recreate
           docker ps -a
+
+      - name: Test DNS
+        run: docker compose -f docker/docker-compose.yml exec jmeter-master ping -c 2 jmeter-slave-1
 
       - name: Check Container Logs
         run: docker compose -f docker/docker-compose.yml logs

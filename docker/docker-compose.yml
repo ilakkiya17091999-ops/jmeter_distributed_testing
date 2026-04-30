@@ -16,34 +16,24 @@ services:
       - jmeter-slave-3
     entrypoint: ["sh", "-c"]
     command: ["while true; do sleep 30; done"]
-    networks:
-      - jmeter-net
-
+   
   jmeter-slave-1:
     image: justb4/jmeter
     environment:
       - JVM_XMS=512
       - JVM_XMX=1024 
     command: jmeter-server -Dserver.rmi.ssl.disable=true
-    networks:
-      - jmeter-net
-
+   
   jmeter-slave-2:
     image: justb4/jmeter
     environment:
       - JVM_XMS=512
       - JVM_XMX=1024
     command: jmeter-server -Dserver.rmi.ssl.disable=true
-    networks:
-      - jmeter-net
-
+    
   jmeter-slave-3:
     image: justb4/jmeter
     environment:
       - JVM_XMS=512
       - JVM_XMX=1024
     command: jmeter-server -Dserver.rmi.ssl.disable=true
-    networks:
-      - jmeter-net
-networks:
-  jmeter-net:
