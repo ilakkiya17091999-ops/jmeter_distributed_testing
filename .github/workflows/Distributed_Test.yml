@@ -24,12 +24,12 @@ jobs:
       - name: Wait
         run: sleep 10
 
-      - name: check docker is up and running
-        run: docker compose -f docker/docker-compose.yml ps
+      - name: check jmeter-master is up and running
+        run: docker logs jmeter-master
 
       - name: run load test
         run: | 
-          docker exec jmeter-master bash -c 'export JVM_ARGS="-Xms1g -Xmx2g" jmeter -n -t /tests/Petstore.jmx -R jmeter-slave-1,jmeter-slave-2,jmeter-slave-3 -l /tests/results.jtl -e -o /tests/report -JThread=5 -JRampup=2 -JDuration=300 -JSLA=15000'
+          docker exec jmeter-master bash -c 'export JVM_ARGS="-Xms512m -Xmx1024m"; jmeter -n -t /tests/Petstore.jmx -R jmeter-slave-1,jmeter-slave-2,jmeter-slave-3 -l /tests/results.jtl -e -o /tests/report -JThread=5 -JRampup=2 -JDuration=300 -JSLA=15000'
 
       - name: upload report
         uses: actions/upload-artifact@v4
