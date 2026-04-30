@@ -13,9 +13,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Spin up Machine
+      - name: Restart Cotainers
         run: | 
-          docker compose -f docker/docker-compose.yml up -d
+          docker compose -f docker/docker-compose.yml down -v
+          docker compose -f docker/docker-compose.yml up -d --force-recreate
           docker ps -a
 
       - name: Check Container Logs
