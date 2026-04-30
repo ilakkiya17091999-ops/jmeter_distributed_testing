@@ -60,4 +60,4 @@ services:
       -Dserver.rmi.localport=50000
     ports:
       - "1099:1099"
-      - "50000:50000"
+      - "50002:50002"
