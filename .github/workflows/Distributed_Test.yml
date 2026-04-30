@@ -20,7 +20,7 @@ jobs:
         run: sleep 120
 
       - name: check docker is up and running
-        run: docker compose ps
+        run: docker compose -f docker/docker-compose.yml ps
 
       - name: run load test
         run: | 
