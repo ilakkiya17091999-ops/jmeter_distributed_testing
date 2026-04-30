@@ -5,6 +5,8 @@ services:
   jmeter-master:
     image: justb4/jmeter
     container_name: jmeter-master
+    environment:
+      - JVM_ARGS=-Xms512m -Xmx1024m
     volumes:
       - ./tests:/tests
     depends_on:
@@ -17,15 +19,21 @@ services:
   jmeter-slave-1:
     image: justb4/jmeter
     container_name: jmeter-slave-1
+    environment:
+      - JVM_ARGS=-Xms512m -Xmx1024m
     command: jmeter-server
 
   jmeter-slave-2:
     image: justb4/jmeter
     container_name: jmeter-slave-2
+    environment:
+      - JVM_ARGS=-Xms512m -Xmx1024m
     command: jmeter-server
 
   jmeter-slave-3:
     image: justb4/jmeter
     container_name: jmeter-slave-3
+    environment:
+      - JVM_ARGS=-Xms512m -Xmx1024m
     command: jmeter-server
 
