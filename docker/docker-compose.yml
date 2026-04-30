@@ -28,10 +28,7 @@ services:
       -Dserver.rmi.ssl.disable=true
       -Dserver_port=1099
       -Dserver.rmi.localport=50000
-    ports:
-      - "1099:1099"
-      - "50000:50000"
-   
+     
   jmeter-slave-2:
     image: justb4/jmeter
     environment:
@@ -43,10 +40,7 @@ services:
       -Dserver.rmi.ssl.disable=true
       -Dserver_port=1099
       -Dserver.rmi.localport=50000
-    ports:
-      - "1099:1099"
-      - "50001:50001"
-    
+       
   jmeter-slave-3:
     image: justb4/jmeter
     environment:
@@ -58,6 +52,4 @@ services:
       -Dserver.rmi.ssl.disable=true
       -Dserver_port=1099
       -Dserver.rmi.localport=50000
-    ports:
-      - "1099:1099"
-      - "50002:50002"
+   
