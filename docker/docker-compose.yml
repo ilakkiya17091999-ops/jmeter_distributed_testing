@@ -11,7 +11,8 @@ services:
       - jmeter-slave-1
       - jmeter-slave-2
       - jmeter-slave-3
-    command: tail -f /dev/null
+    entrypoint: ["sh", "-c"]
+    command: "tail -f /dev/null"
 
   jmeter-slave-1:
     image: justb4/jmeter
